@@ -1,9 +1,9 @@
 <?php
 /**
  * This software is the Copyright of ScientiaMobile, Inc.
- * 
+ *
  * Please refer to the LICENSE.txt file distributed with the software for licensing information.
- * 
+ *
  * @package WurflCloud_Client
  */
 /**
@@ -13,7 +13,7 @@ class WurflCloud_HttpClient_Curl extends WurflCloud_HttpClient_AbstractHttpClien
 	private $curl_supports_ms = false;
 	private $curl_supports_encoding = false;
 	private $curl_handle;
-	
+
 	public function __construct() {
 		$this->initializeCurl();
 	}
@@ -76,5 +76,5 @@ class WurflCloud_HttpClient_Curl extends WurflCloud_HttpClient_AbstractHttpClien
 		}
 		return $headers;
 	}
-	
+
 }

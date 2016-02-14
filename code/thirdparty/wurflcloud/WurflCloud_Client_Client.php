@@ -1,9 +1,9 @@
 <?php
 /**
  * This software is the Copyright of ScientiaMobile, Inc.
- * 
+ *
  * Please refer to the LICENSE.txt file distributed with the software for licensing information.
- * 
+ *
  * @package WurflCloud_Client
  */
 /**
@@ -150,7 +150,7 @@ class WurflCloud_Client_Client {
 	 * @var WurflCloud_HttpClient_AbstractHttpClient
 	 */
 	private $http_client;
-	
+
 	/**
 	 * Creates a new WurflCloud_Client instance
 	 * @param WurflCloud_Client_Config $config Client configuration object
@@ -218,7 +218,7 @@ class WurflCloud_Client_Client {
 	 */
 	private function initializeRequest() {
 		$this->splitApiKey();
-		
+
 		// If the reportInterval is enabled and past the report age, include the report data in the next request
 		if ($this->config->report_interval > 0 && $this->cache->getReportAge() >= $this->config->report_interval) {
 			$this->addReportDataToRequest();
@@ -249,7 +249,7 @@ class WurflCloud_Client_Client {
 	}
 	/**
 	 * Get the date that the WURFL Cloud Server was last updated.  This will be null if there
-	 * has not been a recent query to the server, or if the cached value was pushed out of memory  
+	 * has not been a recent query to the server, or if the cached value was pushed out of memory
 	 * @return int UNIX timestamp (seconds since Epoch)
 	 */
 	public function getLoadedDate() {
@@ -258,7 +258,7 @@ class WurflCloud_Client_Client {
 		}
 		return $this->loaded_date;
 	}
-	
+
 	/**
 	 * Returns true if all of the search_capabilities are present in the capabilities
 	 * array that was returned from the WURFL Cloud Server
@@ -301,7 +301,7 @@ class WurflCloud_Client_Client {
 			}
 		}
 	}
-	
+
 	/**
 	 * Returns the value of the requested capability.  If the capability does not exist, returns null.
 	 * @param string $capability The WURFL capability (e.g. "is_wireless_device")
@@ -420,7 +420,7 @@ class WurflCloud_Client_Client {
 		}
 		return $user_agent;
 	}
-	
+
 	/**
 	 * Splits the API Key into a username and password
 	 * @return boolean success
@@ -430,7 +430,7 @@ class WurflCloud_Client_Client {
 			throw new WurflCloud_Client_ConfigException('The API Key provided is invalid');
 		}
 		$s_user = substr($this->config->api_key, 0, 6);
-		$this->api_username = (int)$s_user; 
+		$this->api_username = (int)$s_user;
 		// Cast back to string to see if the number is the same (string)(int)00001 === '1', not '00001'
 		if((string)$this->api_username !== $s_user) {
 			throw new WurflCloud_Client_ConfigException('The API Key provided is invalid');
@@ -439,11 +439,11 @@ class WurflCloud_Client_Client {
 	}
 
 	/**
-	 * @var string The directory that this file is in.  Used by loadClass()	
+	 * @var string The directory that this file is in.  Used by loadClass()
 	 */
 	private static $base_path;
 	const CLASS_PREFIX = 'WurflCloud_';
-	
+
 	/**
 	 * Loads Class files
 	 * @param string $class_name

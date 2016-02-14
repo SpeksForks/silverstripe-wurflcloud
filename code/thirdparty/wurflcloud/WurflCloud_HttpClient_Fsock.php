@@ -1,9 +1,9 @@
 <?php
 /**
  * This software is the Copyright of ScientiaMobile, Inc.
- * 
+ *
  * Please refer to the LICENSE.txt file distributed with the software for licensing information.
- * 
+ *
  * @package WurflCloud_Client
  */
 /**
@@ -33,7 +33,7 @@ class WurflCloud_HttpClient_Fsock extends WurflCloud_HttpClient_AbstractHttpClie
 		if (!$fh) {
 			throw new WurflCloud_Client_HttpException("Unable to contact server: fsock Error: $error", null);
 		}
-		
+
 		// Setup HTTP Request headers
 		$http_header = "GET $request_path HTTP/1.1\r\n";
 		$http_header.= "Host: $host\r\n";
@@ -50,10 +50,10 @@ class WurflCloud_HttpClient_Fsock extends WurflCloud_HttpClient_AbstractHttpClie
 //die('<pre>'.nl2br($http_header).'</pre>');
 		// Setup timeout
 		stream_set_timeout($fh, 0, $this->timeout_ms * 1000);
-		
+
 		// Send Request headers
 		fwrite($fh, $http_header);
-		
+
 		// Get Response
 		$response = '';
 		while ($line = fgets($fh)) {
@@ -61,15 +61,15 @@ class WurflCloud_HttpClient_Fsock extends WurflCloud_HttpClient_AbstractHttpClie
 		}
 		$stream_info = stream_get_meta_data($fh);
 		fclose($fh);
-		
+
 		// Check for Timeout
 		if ($stream_info['timed_out']) {
 			throw new WurflCloud_Client_HttpException("HTTP Request timed out", null);
 		}
-		
+
 		$this->processResponse($response);
 	}
-	
+
 	protected function processResponseBody($body) {
 		if ($this->responseIsCompressed()) {
 			$this->response_body = $this->decompressBody($body);
@@ -77,7 +77,7 @@ class WurflCloud_HttpClient_Fsock extends WurflCloud_HttpClient_AbstractHttpClie
 			$this->response_body = $body;
 		}
 	}
-	
+
 	protected function decompressBody($body) {
 		$data = @gzinflate(substr($body, 10));
 		if (!is_string($data)) {
@@ -85,7 +85,7 @@ class WurflCloud_HttpClient_Fsock extends WurflCloud_HttpClient_AbstractHttpClie
 		}
 		return $data;
 	}
-	
+
 	protected function responseIsCompressed() {
 		// Decompress if necessary
 		foreach ($this->response_headers as $header) {

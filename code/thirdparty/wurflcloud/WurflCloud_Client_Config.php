@@ -1,22 +1,22 @@
 <?php
 /**
  * This software is the Copyright of ScientiaMobile, Inc.
- * 
+ *
  * Please refer to the LICENSE.txt file distributed with the software for licensing information.
- * 
+ *
  * @package WurflCloud_Client
  */
 /**
  * Configuration class for the WurflCloud_Client
- * 
+ *
  * A usage example of WurflCloud_Client_Config:
  * <code>
- * // Create a configuration object 
- * $config = new WurflCloud_Client_Config(); 
- * // Paste your API Key below 
+ * // Create a configuration object
+ * $config = new WurflCloud_Client_Config();
+ * // Paste your API Key below
  * $config->api_key = 'xxxxxx:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
  * </code>
- * 
+ *
  * @package WurflCloud_Client
  */
 class WurflCloud_Client_Config {
@@ -40,7 +40,7 @@ class WurflCloud_Client_Config {
 	 * @var int
 	 */
 	const METHOD_FSOCK = 'WurflCloud_HttpClient_Fsock';
-	
+
 	/**
 	 * The timeout in milliseconds to wait for the WURFL Cloud request to complete
 	 * @var int
@@ -67,7 +67,7 @@ class WurflCloud_Client_Config {
 	 */
 	public $auto_purge = false;
 	/**
-	 * The interval in seconds that after which API will report its performance 
+	 * The interval in seconds that after which API will report its performance
 	 * @var int
 	 * @access private
 	 */
@@ -79,35 +79,35 @@ class WurflCloud_Client_Config {
 	 * @access private
 	 */
 	public $api_type = 'http';
-	
+
 	/**
 	 * WURFL Cloud Service API Key
-	 * 
+	 *
 	 * The API Key is used to authenticate with the WURFL Cloud Service.  It can be found at in your account
 	 * at http://www.scientiamobile.com/myaccount
 	 * The API Key is 39 characters in with the format: nnnnnn:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	 * where 'n' is a number and 'x' is a letter or number
-	 * 
+	 *
 	 * @var string
 	 */
 	public $api_key = null;
 	/**
 	 * WURFL Cloud servers to use for uncached requests.  The "weight" field can contain any positive number,
-	 * the weights are relative to each other.  
+	 * the weights are relative to each other.
 	 * @var array WURFL Cloud Servers
 	 */
 	public $wcloud_servers = array(
 	//	'nickname'   	=> array(host, weight),
 		'wurfl_cloud' 	=> array('api.wurflcloud.com', 80),
 	);
-	
+
 	/**
 	 * The WURFL Cloud Server that is currently in use, formatted like:
 	 * 'server_nickname' => array('url', 'weight')
 	 * @var array
 	 */
 	private $current_server = array();
-	
+
 	/**
 	 * Adds the specified WURFL Cloud Server
 	 * @param string $nickname Unique identifier for this server

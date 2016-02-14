@@ -1,9 +1,9 @@
 <?php
 /**
  * This software is the Copyright of ScientiaMobile, Inc.
- * 
+ *
  * Please refer to the LICENSE.txt file distributed with the software for licensing information.
- * 
+ *
  * @package WurflCloud_Client
  * @subpackage Cache
  */
@@ -25,7 +25,7 @@ interface WurflCloud_Cache_CacheInterface {
 	 * @return array|boolean Capabilities array or boolean false
 	 */
 	public function getDeviceFromID($key);
-	
+
 	/**
 	 * Stores the given user agent with the given device capabilities in the cache provider for the given time period
 	 * @param string $key User Agent
@@ -41,7 +41,7 @@ interface WurflCloud_Cache_CacheInterface {
 	 */
 	public function setDeviceFromID($key,$value);
 	/**
-	 * Gets the last loaded WURFL timestamp from the cache provider - this is used to detect when a new WURFL has been loaded on the server 
+	 * Gets the last loaded WURFL timestamp from the cache provider - this is used to detect when a new WURFL has been loaded on the server
 	 * @return int Loaded WURFL unix timestamp
 	 */
 	public function getMtime();

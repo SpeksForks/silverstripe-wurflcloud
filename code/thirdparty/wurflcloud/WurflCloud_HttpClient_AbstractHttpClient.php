@@ -1,9 +1,9 @@
 <?php
 /**
  * This software is the Copyright of ScientiaMobile, Inc.
- * 
+ *
  * Please refer to the LICENSE.txt file distributed with the software for licensing information.
- * 
+ *
  * @package WurflCloud_Client
  */
 /**
@@ -17,19 +17,19 @@ abstract class WurflCloud_HttpClient_AbstractHttpClient {
 	protected $response_http_status;
 	protected $response_body;
 	protected $success;
-	
+
 	public function setTimeout($milliseconds) {
 		$this->timeout_ms = $milliseconds;
 	}
-	
+
 	public function setUseCompression($use_compression = true) {
 		$this->use_compression = $use_compression;
 	}
-	
+
 	public function addHttpRequestHeader($name, $value) {
 		$this->request_headers[$name] = $value;
 	}
-	
+
 	/**
 	 * Adds the HTTP Header specified by $source_name (if found) in the $http_request
 	 * under $dest_name.  Example: addRequestHeaderIfExists('HTTP_USER_AGENT', 'User-Agent');
@@ -45,27 +45,27 @@ abstract class WurflCloud_HttpClient_AbstractHttpClient {
 		}
 		return false;
 	}
-	
+
 	public function getResponseBody() {
 		return $this->response_body;
 	}
-	
+
 	public function wasCalled() {
 		return ($this->success !== null);
 	}
-	
+
 	public function success() {
 		return $this->success;
 	}
-	
+
 	abstract public function call($host, $request_path, $auth_user, $auth_pass);
-	
+
 	protected function processResponse($response) {
 		list($headers, $body) = explode("\r\n\r\n", $response, 2);
 		$this->processResponseHeaders($headers);
 		$this->processResponseBody($body);
 	}
-	
+
 	protected function processResponseHeaders($headers) {
 		$this->response_headers = explode("\r\n", $headers);
 		$this->response_http_status = $this->response_headers[0];
@@ -96,7 +96,7 @@ abstract class WurflCloud_HttpClient_AbstractHttpClient {
 		}
 		$this->success = true;
 	}
-	
+
 	protected function processResponseBody($body) {
 		$this->response_body = $body;
 	}

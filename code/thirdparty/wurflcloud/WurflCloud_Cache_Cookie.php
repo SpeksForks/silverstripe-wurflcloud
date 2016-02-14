@@ -1,9 +1,9 @@
 <?php
 /**
  * This software is the Copyright of ScientiaMobile, Inc.
- * 
+ *
  * Please refer to the LICENSE.txt file distributed with the software for licensing information.
- * 
+ *
  * @package WurflCloud_Client
  * @subpackage Cache
  */
@@ -16,7 +16,7 @@ class WurflCloud_Cache_Cookie implements WurflCloud_Cache_CacheInterface {
 	public $cookie_name = 'WurflCloud_Client';
 	public $cache_expiration = 86400;
 	private $cookie_sent = false;
-	
+
 	public function getDevice($user_agent) {
 		if (!isset($_COOKIE[$this->cookie_name])) {
 			return false;
@@ -33,11 +33,11 @@ class WurflCloud_Cache_Cookie implements WurflCloud_Cache_CacheInterface {
 		}
 		return $cookie_data['capabilities'];
 	}
-	
+
 	public function getDeviceFromID($device_id) {
 		return false;
 	}
-	
+
 	public function setDevice($user_agent, $capabilities) {
 		if ($this->cookie_sent === true) return;
 		$cookie_data = array(
@@ -51,7 +51,7 @@ class WurflCloud_Cache_Cookie implements WurflCloud_Cache_CacheInterface {
 		}
 		$this->cookie_sent = true;
 	}
-	
+
 	// Required by interface but not used for this provider
 	public function setDeviceFromID($device_id, $capabilities) {return true;}
 	public function getMtime() {return 0;}
